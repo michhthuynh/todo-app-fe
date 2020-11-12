@@ -7,6 +7,7 @@ import hero from '../assets/HomePage/hero-a.svg'
 import banner1 from '../assets/HomePage/banner-1.PNG'
 import banner2 from '../assets/HomePage/banner-2.PNG'
 import logo2 from '../assets/HomePage/logo-footer.png'
+import CarouselComponent from '../Components/Carousel/index';
 
 HomePage.propTypes = {
 
@@ -23,10 +24,10 @@ function HomePage(props) {
             </NavLink>
           </div>
           <div className="top-bar__right">
-            <NavLink to="/">
+            <NavLink to="/auth/login">
               Login
         </NavLink>
-            <NavLink to="/">
+            <NavLink to="/auth/register">
               Register
         </NavLink>
           </div>
@@ -84,6 +85,18 @@ function HomePage(props) {
           </div>
         </div>
       </div>
+      <div className="carousel-wrapper">
+        <div className="carousel">
+          <div className="carousel__title">
+            How it works
+          </div>
+          <div className="carousel__info">
+            Whether it’s for work, a side project or even the next family vacation, Trello helps your team stay organized.
+          </div>
+          <CarouselComponent />
+        </div>
+        
+      </div>
       <div className="get-started-wrapper">
         <div className="get-started">
           <div className="get-started__title">
@@ -133,7 +146,7 @@ function HomePage(props) {
                 <NavLink to="/">Privacy</NavLink>
               </li>
             </ul>
-            <img class="footer__image" src={logo2} width="150"></img>
+            <img className="footer__image" src={logo2} width="150"></img>
             <div className="footer__copyright">
               © Copyright 2020. All rights reserved.
             </div>

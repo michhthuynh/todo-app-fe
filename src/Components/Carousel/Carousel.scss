@@ -1,0 +1,59 @@
+.btn {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 35px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+  box-shadow: 0.4px 0.4px 12px rgba($color: #000000, $alpha: 0.2);
+  outline: none;
+  svg {
+    font-size: 2rem;
+    color: #00C2E0;
+  }
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  svg {
+    color: white;
+  }
+  background-color: #00C2E0;
+}
+
+.disabled{
+  pointer-events: none;
+  opacity: 0.5;
+  svg {
+    color: gray;
+  }
+}
+
+#prev-btn {
+  left: -100px;
+}
+
+#next-btn {
+  right: -100px;
+}
+
+.carousel-slider{
+  overflow: visible !important;
+}
+
+.slide{
+  background-color: none !important;
+  &>div {
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

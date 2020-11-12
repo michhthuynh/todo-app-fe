@@ -4,6 +4,7 @@ $background-color: #0079bf;
   position: fixed;
   background-color: $background-color;
   width: 100vw;
+  z-index: 10;
   .top-bar {
     height: 60px;
     display: flex;
@@ -155,6 +156,7 @@ $background-color: #0079bf;
 
     &__right {
       max-width: 600px;
+      margin-left: 15px;
       &__title {
         font-size: 2.2rem;
         font-weight: 500;
@@ -251,6 +253,37 @@ $background-color: #0079bf;
       margin-top: 10px;
       color: #172b4d;
       font-size: 1rem;
+      text-shadow: 0.4px .4px 12px rgba($color: #000000, $alpha: 0.4);
+    }
+  }
+}
+
+.carousel-wrapper{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  .carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &__title {
+      text-align: center;
+      color: #172b4d;
+      font-size: 35px;
+      font-weight: 500;
+      line-height: 42px;
+      margin-bottom: 18px;
+    }
+    &__info {
+      max-width: 475px;
+      text-align: center;
+      color: #172b4d;
+      font-size: 1.25rem;
+      font-weight: 400;
+      padding-bottom: 20px;
+    }
+    &__main {
+      max-width: 900px;
     }
   }
 }
