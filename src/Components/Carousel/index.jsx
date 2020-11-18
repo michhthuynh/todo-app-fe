@@ -13,7 +13,7 @@ function CarouselComponent(props) {
   const renderPrev = (onClickHandler, hasPrev, label) => {
     return (
       <button type="button" onClick={onClickHandler} title={label} id='prev-btn' className={hasPrev ? "btn" : "btn disabled"}>
-        <FontAwesomeIcon icon={faAngleLeft}/>
+        <FontAwesomeIcon icon={faAngleLeft} />
       </button>
     )
   }
@@ -25,9 +25,9 @@ function CarouselComponent(props) {
       </button>
     )
   }
-    
+
   return (
-    <Carousel 
+    <Carousel
       className="carousel__main"
       showThumbs={false}
       showStatus={false}
@@ -35,11 +35,11 @@ function CarouselComponent(props) {
       renderArrowNext={renderNext}
     >
       <div>
-        <img src="/static/media/hero-a.0ffdd091.svg" />
+        <img src="https://image.freepik.com/free-vector/list-goals-complete-concept-illustration-cartoon-flat-tiny-people-group-planning-standing-near-checklist-planner-paper-document-marking-completed-business-tasks-isolated_213110-496.jpg" />
         <p className="legend">Legend 1</p>
       </div>
       <div>
-        <img src="/static/media/banner-1.43d78d91.PNG" />
+        <img src="/static/media/hero-a.0ffdd091.svg" />
         <p className="legend">Legend 2</p>
       </div>
       <div>

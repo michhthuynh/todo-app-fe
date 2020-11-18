@@ -38,6 +38,13 @@ $background-color: #0079bf;
         border-radius: 5px;
         margin: 0;
       }
+      &__dashboard {
+        color: $background-color !important;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 0;
+      }
     }
   }
 }
@@ -59,6 +66,7 @@ $background-color: #0079bf;
     justify-content: space-between;
     align-items: center;
     &__left {
+      min-width: 520px;
       max-width: 600px;
       display: flex;
       flex-direction: column;
@@ -67,6 +75,7 @@ $background-color: #0079bf;
         font-size: 3rem;
         color: white;
         padding-bottom: 20px;
+        margin-bottom: 18px;
       }
       &__info {
         font-size: 1.5rem;
@@ -76,7 +85,7 @@ $background-color: #0079bf;
 
     &__right {
       img {
-        max-width: 600px;
+        max-width: 500px;
         width: 50vw;
       }
     }
@@ -99,6 +108,7 @@ $background-color: #0079bf;
       max-width: 600px;
       padding-right: 20px;
       &__title {
+        margin-bottom: 18px;
         font-size: 2.2rem;
         font-weight: 500;
         line-height: 1.2;
@@ -124,7 +134,7 @@ $background-color: #0079bf;
     }
     &__right {
       img {
-        max-width: 600px;
+        max-width: 500px;
         width: 45vw;
         border-radius: 10px;
         box-shadow: -2px 2px 12px rgba($color: #000000, $alpha: 0.4);
@@ -155,9 +165,10 @@ $background-color: #0079bf;
     }
 
     &__right {
-      max-width: 600px;
+      max-width: 500px;
       margin-left: 15px;
       &__title {
+        margin-bottom: 18px;
         font-size: 2.2rem;
         font-weight: 500;
         line-height: 1.2;
@@ -253,12 +264,12 @@ $background-color: #0079bf;
       margin-top: 10px;
       color: #172b4d;
       font-size: 1rem;
-      text-shadow: 0.4px .4px 12px rgba($color: #000000, $alpha: 0.4);
+      text-shadow: 0.4px 0.4px 12px rgba($color: #000000, $alpha: 0.4);
     }
   }
 }
 
-.carousel-wrapper{
+.carousel-wrapper {
   margin-top: 40px;
   margin-bottom: 40px;
   .carousel {
@@ -284,6 +295,76 @@ $background-color: #0079bf;
     }
     &__main {
       max-width: 900px;
+    }
+  }
+}
+
+.feature {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &__title {
+    text-align: center;
+    color: #172b4d;
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 42px;
+    margin-bottom: 18px;
+  }
+  &__info {
+    max-width: 475px;
+    text-align: center;
+    color: #172b4d;
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding-bottom: 20px;
+  }
+  &__list {
+    display: flex;
+    justify-content: center;
+
+    &__item {
+      width: calc(100% / 3);
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 10px 30px;
+      &__image {
+        img {
+          width: 270px;
+        }
+      }
+      &__title {
+        text-align: center;
+        color: #172b4d;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 42px;
+        margin-bottom: 18px;
+      }
+      &__info {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.2rem;
+        color: rgb(23, 43, 77);
+        margin-bottom: 20px;
+      }
+      &__btn {
+        margin: 0 15%;
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        color: white;
+        background-color: rgb(86, 116, 134);
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+      }
     }
   }
 }

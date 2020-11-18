@@ -6,26 +6,29 @@ InputField.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   disable: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 InputField.defaultProps = {
   type: 'text',
   label: '',
   placeholder: '',
-  disable: false
+  disable: false,
+  className: ''
 }
 
 function InputField(props) {
   const {
     field, form, placeholder,
     type, label, disable,
+    className
   } = props
 
   const { name } = field
   const { errors, touched } = form
   const showError = touched[name] && errors[name]
   return (
-    <div className="form-group">
+    <div className={`${className}__form-group`}>
       <input
         id={name}
         {...field}
@@ -37,7 +40,7 @@ function InputField(props) {
       />
       {
         showError &&
-        <p className="form-group__error-message">
+        <p className={`${className}__form-group__error-message`}>
           {
             errors[name]
           }
