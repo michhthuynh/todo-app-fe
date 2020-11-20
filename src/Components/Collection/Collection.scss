@@ -3,4 +3,67 @@ $background-color: #ebecf0;
 .collection {
   width: 272px;
   padding: 4px 8px;
+  background-color: $background-color;
+  border-radius: 5px;
+
+  &__header {
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    &__title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    &__btn {
+      border: none;
+      color: rgba($color: #172b4d, $alpha: 0.7);
+      height: 20px;
+      border: none;
+      outline: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 300ms ease-in-out;
+      &:hover {
+        background-color: rgba($color: gray, $alpha: 0.1);
+      }
+    }
+  }
+
+  &__list {
+    max-height: calc(100vh - 120px);
+    background-color: $background-color;
+    height: 80%;
+    overflow-y: scroll;
+    .task-item {
+      margin-bottom: 10px;
+      border-radius: 6px;
+      padding: 5px;
+      &:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__footer {
+    height: 40px;
+    &__btn {
+      text-align: start;
+      border-radius: 5px;
+      padding: 5px 5px;
+      width: 100%;
+      margin: 10px 0;
+      border: none;
+      color: rgba($color: black, $alpha: 0.5);
+      font-weight: 600;
+      font-weight: 1rem;
+      &__icon {
+        padding-right: 10px;
+      }
+      &:hover {
+        background-color: rgba($color: gray, $alpha: 0.1);
+      }
+    }
+  }
 }
