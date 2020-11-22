@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoginForm from '../Components/LoginForm';
-import logo from '../assets/HomePage/logo-footer.png'
+import logo from '../assets/logo-footer.png'
 import backgroundLeft from '../assets/Login/background-left.svg'
 import backgroundRight from '../assets/Login/background-right.svg'
 import { NavLink, Redirect } from 'react-router-dom';

@@ -9,7 +9,7 @@ import banner2 from '../assets/HomePage/banner-2.PNG'
 import list1 from '../assets/HomePage/list-1.png'
 import list2 from '../assets/HomePage/list-2.png'
 import list3 from '../assets/HomePage/list-3.png'
-import logo2 from '../assets/HomePage/logo-footer.png'
+import logo2 from '../assets/logo-footer.png'
 import CarouselComponent from '../Components/Carousel/index';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

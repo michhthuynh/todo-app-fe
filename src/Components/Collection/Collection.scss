@@ -1,10 +1,16 @@
 $background-color: #ebecf0;
 
 .collection {
+  min-width: 272px;
   width: 272px;
   padding: 4px 8px;
   background-color: $background-color;
   border-radius: 5px;
+  max-height: calc(100vh - 75px);
+
+  display: flex;
+  flex-direction: column;
+  justify-self: start;
 
   &__header {
     height: 20px;
@@ -32,10 +38,9 @@ $background-color: #ebecf0;
   }
 
   &__list {
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 150px);
     background-color: $background-color;
-    height: 80%;
-    overflow-y: scroll;
+    overflow-y: auto;
     .task-item {
       margin-bottom: 10px;
       border-radius: 6px;
@@ -47,6 +52,7 @@ $background-color: #ebecf0;
   }
 
   &__footer {
+    max-height: 40px;
     height: 40px;
     &__btn {
       text-align: start;

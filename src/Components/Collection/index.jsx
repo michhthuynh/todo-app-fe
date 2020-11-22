@@ -27,6 +27,12 @@ function Collection(props) {
         <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
         <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
         <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
+        {/* <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
+        <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
+        <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
+        <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
+        <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} />
+        <Task title="thanks" onClickAdd={handleOnClickAddTask} onClickRemove={handleOnClickRemoveTask} /> */}
       </div>
       <div className="collection__footer">
         <button className="collection__footer__btn">

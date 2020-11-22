@@ -1,12 +1,25 @@
 .dashboard-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 
   width: 100%;
   min-height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("background.jpg");
+}
+
+.collection-list-wrapper {
+  height: calc(100vh - 58px);
+  min-height: calc(100vh - 58px);
+  margin-top: 10px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  overflow-x: auto;
+  .collection {
+    margin-right: 20px;
+  }
 }
