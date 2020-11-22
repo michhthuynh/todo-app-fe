@@ -16,16 +16,6 @@ function DashboardPage(props) {
           <Collection />
           <Collection />
           <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-          <Collection />
-
         </div>
       </div>
       :
