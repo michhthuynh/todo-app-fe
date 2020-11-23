@@ -18,35 +18,6 @@ function DashboardPage(props) {
       setCollections(response['data'])
     }
     fetchCollection()
-
-    // const getTask = id => new Promise((resolve, reject) => {
-    //   API.get(`/collection/get-task?id=${id}`, tokenConfig)
-    //     .then(({ data }) => {
-    //       resolve(data)
-    //     })
-    //     .catch(err => {
-    //       reject(err.message)
-    //     })
-    // })
-
-    // const fetchIdCollection = async () => {
-    //   const userID = localStorage.getItem('user_id')
-    //   try {
-    //     const collection = await fetchCollection(userID)
-    //     collection.forEach(async ({ id }, index) => {
-    //       const task = await getTask(id)
-    //       data.push({
-    //         title: collection[index]['title'],
-    //         data: task
-    //       })
-    //     })
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    //   setCollections(data)
-    // }
-    // fetchIdCollection()
-    // console.log(collections)
   }, [])
 
   return (
