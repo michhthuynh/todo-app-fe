@@ -2,11 +2,14 @@ $grey-color: #ebecf0;
 $black-color: rgb(23, 43, 77);
 
 .task-item {
+  min-height: 40px;
   width: 100%;
   background-color: white;
   padding: 8px 3px;
   border-radius: 2px;
   position: relative;
+  display: flex;
+  align-items: center;
   &:hover {
     .task-item__action__btn {
       opacity: 1;

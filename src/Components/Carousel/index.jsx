@@ -35,15 +35,15 @@ function CarouselComponent(props) {
       renderArrowNext={renderNext}
     >
       <div>
-        <img src="https://image.freepik.com/free-vector/list-goals-complete-concept-illustration-cartoon-flat-tiny-people-group-planning-standing-near-checklist-planner-paper-document-marking-completed-business-tasks-isolated_213110-496.jpg" />
+        <img src="https://image.freepik.com/free-vector/list-goals-complete-concept-illustration-cartoon-flat-tiny-people-group-planning-standing-near-checklist-planner-paper-document-marking-completed-business-tasks-isolated_213110-496.jpg" alt="#" />
         <p className="legend">Legend 1</p>
       </div>
       <div>
-        <img src="/static/media/hero-a.0ffdd091.svg" />
+        <img src="/static/media/hero-a.0ffdd091.svg" alt="#" />
         <p className="legend">Legend 2</p>
       </div>
       <div>
-        <img src="/static/media/hero-a.0ffdd091.svg" />
+        <img src="/static/media/hero-a.0ffdd091.svg" alt="#" />
         <p className="legend">Legend 3</p>
       </div>
     </Carousel>

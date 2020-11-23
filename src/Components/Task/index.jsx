@@ -5,34 +5,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 Task.propTypes = {
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   onClickAdd: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
 };
 
 Task.defaultProps = {
-  title: '',
+  id: '',
+  description: '',
   onClickAdd: null,
   onClickRemove: null,
 }
 
 function Task(props) {
-  const { title, onClickAdd, onClickRemove } = props
+  const { id, description, onClickAdd, onClickRemove } = props
 
   const handleOnClickAdd = () => {
     if (!onClickAdd) return
-    onClickAdd()
+    onClickAdd(id)
   }
 
   const handleOnClickRemove = () => {
     if (!onClickRemove) return
-    onClickRemove()
+    onClickRemove(id)
   }
 
   return (
     <div className="task-item">
       <div className="task-item__title">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod eum sint corrupti quisquam. Ipsum molestiae harum accusamus suscipit sint vel nam, incidunt iste non tempora dolor praesentium, recusandae quo voluptate.
+        {description}
       </div>
       <div className="task-item__action">
         <button className="task-item__action__btn" onClick={handleOnClickAdd}>
