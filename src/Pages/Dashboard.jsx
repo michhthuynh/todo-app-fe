@@ -20,6 +20,7 @@ function DashboardPage(props) {
     fetchCollection()
   }, [])
 
+
   return (
     logged ?
       <div className="dashboard-wrapper">

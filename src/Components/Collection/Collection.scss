@@ -41,12 +41,33 @@ $background-color: #ebecf0;
     max-height: calc(100vh - 150px);
     background-color: $background-color;
     overflow-y: auto;
+
+    position: relative;
     .task-item {
       margin-bottom: 10px;
       border-radius: 6px;
       padding: 5px;
       &:nth-last-child(1) {
         margin-bottom: 0;
+      }
+    }
+  }
+
+  &__edit {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    input {
+      width: 100%;
+      padding: 10px 5px;
+      font-size: 1rem;
+      outline-color: rgb(13, 148, 148);
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      :hover {
+        .task-item__title {
+          color: red !important;
+        }
       }
     }
   }
@@ -69,6 +90,47 @@ $background-color: #ebecf0;
       }
       &:hover {
         background-color: rgba($color: gray, $alpha: 0.1);
+      }
+    }
+  }
+
+  &__add-new {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    input {
+      animation: forwards 0.8s;
+      width: 100%;
+      padding: 10px 5px;
+      font-size: 1rem;
+      outline-color: rgb(13, 148, 148);
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    &__control {
+      display: flex;
+      justify-content: flex-start;
+
+      &__submit {
+        width: 82.5px;
+        padding: 6px 12px;
+        background-color: rgb(90, 172, 68);
+        color: white;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      &__cancel {
+        border: none;
+        background-color: $background-color;
+        cursor: pointer;
+        :hover {
+          color: rgb(13, 148, 148);
+        }
       }
     }
   }
