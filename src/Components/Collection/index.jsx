@@ -13,11 +13,13 @@ import CollectionHeader from '../CollectionHeader';
 Collection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
+  onClickRemoveCollection: PropTypes.func,
 };
 
 Collection.defaultProps = {
   title: '',
   id: '',
+  onClickRemoveCollection: null,
 }
 
 const parserData = data => {
@@ -30,7 +32,7 @@ const parserData = data => {
 }
 
 function Collection(props) {
-  const { title, id } = props
+  const { title, id, onClickRemoveCollection } = props
   const [removeID, setRemoveID] = useState('')
   const [editID, setEditID] = useState('')
   const [inputAdd, setInputAdd] = useState('')
@@ -144,10 +146,15 @@ function Collection(props) {
     setShowFormAdd(false)
   }
 
+  const handleOnClickRemoveCollection = e => {
+    if (!onClickRemoveCollection) return
+    onClickRemoveCollection(e)
+  }
+
   return (
     <div className="collection-wrapper">
       <div className="collection">
-        <CollectionHeader title={title} collectionID={id} />
+        <CollectionHeader title={title} collectionID={id} onClickRemove={handleOnClickRemoveCollection} />
         <div className="collection__list">
           {
             task.map(({ description, id }, index) => {
