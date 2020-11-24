@@ -9,11 +9,12 @@ CollectionHeader.propTypes = {
 };
 
 CollectionHeader.defaultProps = {
-  title: ""
+  title: "",
+  collectionID: "",
 }
 
 function CollectionHeader(props) {
-  const { title } = props
+  const { title, collectionID } = props
   const [showButton, setShowButton] = useState(false)
 
   const handleClick = () => {
