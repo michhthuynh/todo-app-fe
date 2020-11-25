@@ -10,35 +10,25 @@ import tokenConfig from '../../utils/tokenConfig';
 CollectionHeader.propTypes = {
   title: PropTypes.string,
   collectionID: PropTypes.string,
-  handleChangeTitle: PropTypes.func,
   onClickRemove: PropTypes.func,
+  onChangeTitle: PropTypes.func,
 };
 
 CollectionHeader.defaultProps = {
   title: "",
   collectionID: "",
-  handleChangeTitle: null,
+  onChangeTitle: null,
   onClickRemove: null,
 }
 
+const randomID = () => {
+  return Math.ceil(Math.random() * Math.pow(10, 8))
+}
+
 function CollectionHeader(props) {
-  const { title, collectionID, onClickRemove } = props
+  const { title, collectionID, onClickRemove, onChangeTitle } = props
   const [showButton, setShowButton] = useState(false)
   const [showForm, setShowForm] = useState(false)
-  const [titleCollection, setTitleCollection] = useState(title)
-
-
-  // useEffect(() => {
-  //   if (titleCollection === '') return
-  //   const fetch = async () => {
-  //     try {
-  //       await API.put(`/collection/${collectionID}/title`, { title: titleCollection }, tokenConfig)
-  //     } catch (error) {
-  //       console.log('Can connect to database:', error.message)
-  //     }
-  //   }
-  //   fetch()
-  // }, [titleCollection, collectionID])
 
   const handleClickShowButton = () => {
     setShowButton(!showButton)
@@ -82,9 +72,11 @@ function CollectionHeader(props) {
           <Formik
             initialValues={{ editTitle: '' }}
             onSubmit={(values, { resetForm }) => {
-              setTitleCollection(values.editTitle)
-              setShowForm(false)
-              setShowButton(false)
+              if (!onChangeTitle) return
+              onChangeTitle({
+                collectionID,
+                title: values.editTitle
+              })
             }}
           >
             {
@@ -104,7 +96,6 @@ function CollectionHeader(props) {
           </Formik>
         </div>
       }
-
     </div>
   );
 }

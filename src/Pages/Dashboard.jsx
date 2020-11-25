@@ -14,9 +14,7 @@ function DashboardPage(props) {
   const logged = useSelector(state => state.user.isAuthentication)
   const [collections, setCollections] = useState([])
   const [collectionIDRemove, setCollectionIDRemove] = useState('')
-  const [test, setTest] = useState('')
-  const [newCollectionID, setNewCollectionID] = useState('')
-  const [newCollection, setNewCollection] = useState([])
+  const [reload, setReload] = useState('')
   const [showFormAddCollection, setShowFormAddCollection] = useState(false)
   const [addCollection, setAddCollection] = useState({})
 
@@ -25,15 +23,14 @@ function DashboardPage(props) {
       try {
         const userID = localStorage.getItem('user_id')
         const response = await API.get(`/collection/${userID}`, tokenConfig)
-        const temp = response['data']
-        console.log(temp)
-        setCollections(temp)
+        const data = response['data']
+        console.log(data)
       } catch (error) {
         setCollections([])
       }
     }
     fetchCollection()
-  }, [newCollection, newCollectionID, test])
+  }, [reload])
 
   useEffect(() => {
     if (collectionIDRemove === '') return
@@ -44,7 +41,7 @@ function DashboardPage(props) {
           headers: tokenConfig.headers
         })
         if (res.status === 200) {
-          setTest(collectionIDRemove)
+          setReload(collectionIDRemove)
         }
       } catch (error) {
         console.log("Can not connect database: ", error.message)
@@ -65,7 +62,7 @@ function DashboardPage(props) {
         }, tokenConfig)
 
         if (res.status === 200) {
-          setNewCollectionID(id)
+          setReload(id)
         }
       } catch (error) {
         console.log("Can not connect database: ", error.message)
@@ -78,12 +75,17 @@ function DashboardPage(props) {
     setCollectionIDRemove(e)
   }
 
+  const handleOnSubmitAddCollection = e => {
+    setAddCollection(e)
+  }
+
+  // handle button
   const handleOnClickAdd = () => {
     setShowFormAddCollection(true)
   }
 
-  const handleOnSubmitAddCollection = e => {
-    setAddCollection(e)
+  const handleOnReload = e => {
+    setReload(e)
   }
 
   return (
@@ -93,7 +95,7 @@ function DashboardPage(props) {
         <div className="collection-list-wrapper" >
           {
             collections.map((value, index) => {
-              return <Collection title={value['title']} id={value['_id']} key={index} onClickRemoveCollection={handleOnClickRemove} />
+              return <Collection title={value['title']} collectionID={value['_id']} key={index} onClickRemoveCollection={handleOnClickRemove} onReload={handleOnReload} />
             })
           }
           <div className="collection__add-collection">
