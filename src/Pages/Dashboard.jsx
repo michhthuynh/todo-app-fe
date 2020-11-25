@@ -10,11 +10,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import AddCollectionForm from '../Components/AddCollectionForm';
 
+const randomID = () => {
+  return Math.ceil(Math.random() * Math.pow(10, 8))
+}
+
 function DashboardPage(props) {
   const logged = useSelector(state => state.user.isAuthentication)
   const [collections, setCollections] = useState([])
   const [collectionIDRemove, setCollectionIDRemove] = useState('')
   const [reload, setReload] = useState('')
+  const [changeTitle, setChangeTitle] = useState({})
   const [showFormAddCollection, setShowFormAddCollection] = useState(false)
   const [addCollection, setAddCollection] = useState({})
 
@@ -22,9 +27,9 @@ function DashboardPage(props) {
     const fetchCollection = async () => {
       try {
         const userID = localStorage.getItem('user_id')
-        const response = await API.get(`/collection/${userID}`, tokenConfig)
-        const data = response['data']
-        console.log(data)
+        const response = await API.get(`/collection/${userID}/task`, tokenConfig)
+        const data = response['data']["message"]
+        setCollections(data)
       } catch (error) {
         setCollections([])
       }
@@ -71,6 +76,25 @@ function DashboardPage(props) {
     callAddCollection()
   }, [addCollection])
 
+  useEffect(() => {
+    if (Object.keys(changeTitle).length === 0) return
+    const { collectionID, title } = changeTitle
+    const callChangeTitle = async () => {
+      try {
+        const res = await API.put(`/collection/${collectionID}/title`, {
+          title
+        }, tokenConfig)
+
+        if (res.status === 200) {
+          setReload(randomID())
+        }
+      } catch (error) {
+        console.log("Can not connect database: ", error.message)
+      }
+    }
+    callChangeTitle()
+  }, [changeTitle])
+
   const handleOnClickRemove = e => {
     setCollectionIDRemove(e)
   }
@@ -88,14 +112,24 @@ function DashboardPage(props) {
     setReload(e)
   }
 
+  const handleOnChangeTitle = e => {
+    setChangeTitle(e)
+  }
+
   return (
     logged ?
       <div className="dashboard-wrapper">
         <TopBar />
         <div className="collection-list-wrapper" >
           {
-            collections.map((value, index) => {
-              return <Collection title={value['title']} collectionID={value['_id']} key={index} onClickRemoveCollection={handleOnClickRemove} onReload={handleOnReload} />
+            collections.map(({ title, collection_id, task_list }, index) => {
+              return <Collection
+                title={title}
+                collectionID={collection_id}
+                tasks={task_list}
+                key={index}
+                onClickRemoveCollection={handleOnClickRemove}
+                onChangeTitle={handleOnChangeTitle} />
             })
           }
           <div className="collection__add-collection">

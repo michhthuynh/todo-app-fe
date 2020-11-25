@@ -11,3 +11,10 @@ export const updateCollection = collection => {
     payload: collection
   }
 }
+
+export const updateCollection = data => {
+  return {
+    type: 'CALL_RELOAD',
+    payload: data
+  }
+}

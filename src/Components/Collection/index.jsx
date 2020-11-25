@@ -15,93 +15,59 @@ Collection.propTypes = {
   title: PropTypes.string,
   collectionID: PropTypes.string,
   reload: PropTypes.string,
+  tasks: PropTypes.array,
   onClickRemoveCollection: PropTypes.func,
-  onReload: PropTypes.func,
+  onChangeTitle: PropTypes.func,
 };
 
 Collection.defaultProps = {
   title: '',
   collectionID: '',
   reload: '',
+  tasks: [],
   onClickRemoveCollection: null,
-  onReload: null,
+  onChangeTitle: null,
 }
 
 function Collection(props) {
-  const { collectionID, onClickRemoveCollection, onReload, title, reload } = props
-  const [showFormAdd, setShowFormAdd] = useState(false)
+  const { collectionID, onClickRemoveCollection, onChangeTitle, title, reload, tasks } = props
+
+  const [showFormAddTask, setShowFormAddTask] = useState(false)
   const [showFormEdit, setShowFormEdit] = useState(false)
-  const [task, setTask] = useState([])
-  const [newTitle, setNewTitle] = useState('')
-  const [newTask, setNewTask] = useState('')
 
-  useEffect(() => {
-    const callGetTask = async () => {
-      const res = await API.get(`/collection/get-task?id=${collectionID}`, tokenConfig)
-      if (res.status) {
-        console.log(res.data)
-        setTask(res.data)
-      }
-    }
-    callGetTask()
-  }, [reload])
-
-  useEffect(() => {
-    const temp = newTitle.title
-    if (newTitle === '') return
-    if (temp === undefined) return
-    const callUpdateCol = async () => {
-      const res = await API.put(`/collection/${collectionID}/title`, { title: temp }, tokenConfig)
-      if (res.status === 200) {
-        onReload(newTitle)
-      }
-    }
-    callUpdateCol()
-  }, [newTitle])
-
-  useEffect(() => {
-    const temp = newTask.description
-    if (newTask === '') return
-    if (temp === undefined) return
-    const callAddNewTask = async () => {
-      const res = await API.post(`/task/create`, {
-        collection_id: collectionID,
-        description: temp
-      }, tokenConfig)
-      if (res.status === 200) {
-        onReload(newTask)
-      }
-    }
-    callAddNewTask()
-  }, [newTask])
-
-  const handleOnChangeTitle = e => {
-    setNewTitle(e)
-  }
-
-  const handleAddTask = e => {
-    console.log(e)
-    setNewTask(e)
-  }
-
-  const handleOnClickAddTask = () => {
-    setShowFormAdd(true)
-  }
-
+  // handle header
   const handleOnClickRemoveCollection = e => {
     if (!onClickRemoveCollection) return
     onClickRemoveCollection(e)
+  }
+
+  const handleOnChangeTitle = e => {
+    if (!onChangeTitle) return
+    onChangeTitle(e)
+  }
+
+  const handleAddTask = e => {
+
+  }
+
+  const handleOnClickAddTask = () => {
+    setShowFormAddTask(true)
+  }
+
+  const handleDisplayAddTask = e => {
+    console.log(e)
+    setShowFormAddTask(e)
   }
 
   return (
     <div className="collection-wrapper">
       <div className="collection">
         <CollectionHeader title={title} collectionID={collectionID} onClickRemove={handleOnClickRemoveCollection} onChangeTitle={handleOnChangeTitle} />
-        <CollectionList task={task} />
+        <CollectionList task={tasks} />
         <CollectionEdit display={showFormEdit} />
-        <CollectionAddTask display={showFormAdd} onSubmit={handleAddTask} />
+        <CollectionAddTask display={showFormAddTask} onSubmit={handleAddTask} onDisplay={handleDisplayAddTask} />
         {
-          !(showFormAdd || showFormEdit) &&
+          !(showFormAddTask || showFormEdit) &&
           <div className="collection__footer">
             <button className="collection__footer__btn" onClick={handleOnClickAddTask}>
               <span className="collection__footer__btn__icon"><FontAwesomeIcon icon={faPlus} /></span>

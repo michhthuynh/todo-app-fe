@@ -8,20 +8,27 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 CollectionAddTask.propTypes = {
   display: PropTypes.bool,
   onSubmit: PropTypes.func,
+  onDisplay: PropTypes.func,
 };
 
 CollectionAddTask.defaultProps = {
   display: false,
   onSubmit: null,
+  onDisplay: null,
 }
 
 function CollectionAddTask(props) {
-  const { onSubmit } = props
+  const { onSubmit, onDisplay } = props
 
   const handleAddOnBlur = e => {
+    onSubmit({
+      description: e
+    })
+    onDisplay(false)
   }
 
   const handleCancelAdd = () => {
+    onDisplay(false)
   }
 
   const { display } = props
@@ -35,6 +42,7 @@ function CollectionAddTask(props) {
           onSubmit({
             description: values.addField
           })
+          onDisplay(false)
         }}
       >
         {
@@ -50,7 +58,7 @@ function CollectionAddTask(props) {
                 <div className="collection__add-new__control">
                   <button type="submit" className="collection__add-new__control__submit">
                     Add task
-                        </button>
+                  </button>
                   <button onClick={handleCancelAdd} className="collection__add-new__control__cancel">
                     <span>
                       <FontAwesomeIcon icon={faTimes} />
