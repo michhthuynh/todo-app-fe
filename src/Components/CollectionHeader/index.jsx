@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH, faPen, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FastField, Formik } from 'formik';
 import AutoFocusField from '../../custom-fields/AutoFocusField';
-import API from '../../utils/API';
-import tokenConfig from '../../utils/tokenConfig';
+import './CollectionHeader.scss'
 
 CollectionHeader.propTypes = {
   title: PropTypes.string,
@@ -37,10 +36,12 @@ function CollectionHeader(props) {
   const handleClickRemove = () => {
     if (!onClickRemove) return
     onClickRemove(collectionID)
+    setShowButton(false)
   }
 
   const handleEditClick = () => {
     setShowForm(true)
+    setShowButton(false)
   }
 
   const handleOnblur = () => {
@@ -52,23 +53,35 @@ function CollectionHeader(props) {
       <div className="collection__header__title">
         {title}
       </div>
-      <button className="collection__header__btn" onClick={handleClickShowButton}>
-        <FontAwesomeIcon icon={faEllipsisH} />
+      <button className={!showButton ? `collection__header__btn` : `collection__header__btn change`} onClick={handleClickShowButton}>
+        <span>
+          {
+            !showButton ? <FontAwesomeIcon icon={faEllipsisH} /> : <FontAwesomeIcon icon={faTimes} />
+          }
+        </span>
       </button>
+      {/* {
+        !showForm &&
+
+      } */}
 
       {showButton &&
         <div className="collection__header__control">
           <button onClick={handleEditClick}>
-            edit
+            <span>
+              <FontAwesomeIcon icon={faPen} />
+            </span>
           </button>
           <button onClick={handleClickRemove}>
-            remove
+            <span>
+              <FontAwesomeIcon icon={faTrash} />
+            </span>
           </button>
         </div>
       }
       {
         showForm &&
-        <div className="collection__header__control">
+        <div className="collection__header__form">
           <Formik
             initialValues={{ editTitle: '' }}
             onSubmit={(values, { resetForm }) => {
@@ -77,6 +90,8 @@ function CollectionHeader(props) {
                 collectionID,
                 title: values.editTitle
               })
+              setShowButton(false)
+              setShowForm(false)
             }}
           >
             {
@@ -87,6 +102,7 @@ function CollectionHeader(props) {
                       name='editTitle'
                       component={AutoFocusField}
 
+                      placeholder="New title"
                       className="editTitle"
                     />
                   </form>

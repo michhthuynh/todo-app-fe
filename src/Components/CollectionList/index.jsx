@@ -3,28 +3,34 @@ import PropTypes from 'prop-types';
 import Task from '../Task';
 
 CollectionList.propTypes = {
-  task: PropTypes.array
+  task: PropTypes.array,
+  onSubmit: PropTypes.func,
+  onRemoveTask: PropTypes.func,
 };
 
 CollectionList.defaultProps = {
-  task: []
-}
-
-const handleOnClickEditTask = id => {
-
-}
-
-const handleOnClickRemoveTask = id => {
-
+  task: [],
+  onSubmit: null,
+  onRemoveTask: null,
 }
 
 function CollectionList(props) {
-  const { task } = props
+  const { task, onSubmit, onRemoveTask } = props
+
+  const handleChangeDes = e => {
+    if (!onSubmit) return
+    onSubmit(e)
+  }
+
+  const handleOnClickRemoveTask = id => {
+    if (!onRemoveTask) return
+    onRemoveTask(id)
+  }
   return (
     <div className="collection__list">
       {
-        task.map(({ description, id }, index) => {
-          return <Task description={description} id={id} key={index} onClickRemove={handleOnClickRemoveTask} onClickEdit={handleOnClickEditTask} />
+        task.map(({ description, _id }, index) => {
+          return <Task description={description} taskID={_id} key={index} onClickRemove={handleOnClickRemoveTask} onSubmit={handleChangeDes} />
         })
       }
     </div>

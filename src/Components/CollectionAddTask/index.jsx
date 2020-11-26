@@ -20,13 +20,6 @@ CollectionAddTask.defaultProps = {
 function CollectionAddTask(props) {
   const { onSubmit, onDisplay } = props
 
-  const handleAddOnBlur = e => {
-    onSubmit({
-      description: e
-    })
-    onDisplay(false)
-  }
-
   const handleCancelAdd = () => {
     onDisplay(false)
   }
@@ -39,16 +32,14 @@ function CollectionAddTask(props) {
         initialValues={{ addField: '' }}
         onSubmit={(values, { resetForm }) => {
           if (!onSubmit) return
-          onSubmit({
-            description: values.addField
-          })
+          onSubmit(values.addField)
           onDisplay(false)
         }}
       >
         {
           formProps => {
             return (
-              <form onSubmit={formProps.handleSubmit} onBlur={handleAddOnBlur}>
+              <form onSubmit={formProps.handleSubmit}>
                 <FastField
                   name='addField'
                   component={AutoFocusField}

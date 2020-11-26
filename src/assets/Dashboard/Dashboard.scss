@@ -10,6 +10,7 @@
 }
 
 .collection-list-wrapper {
+  padding-left: 20px;
   height: calc(100vh - 58px);
   min-height: calc(100vh - 58px);
   margin-top: 10px;
@@ -21,5 +22,60 @@
   overflow-x: auto;
   .collection {
     margin-right: 20px;
+  }
+}
+
+.collection__add-collection {
+  min-width: 292px;
+  width: 292px;
+  padding-right: 20px;
+  &__btn-show {
+    border: none;
+    border-radius: 2.5px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba($color: #ffffff, $alpha: 0.24);
+    color: white;
+    outline: none;
+    cursor: pointer;
+  }
+  &__control {
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #ebecf0;
+
+    position: relative;
+    &__form {
+      input {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 10px 5px;
+        margin-bottom: 10px;
+        outline-color: rgb(13, 148, 148);
+      }
+      button {
+        width: 150px;
+        padding: 6px 12px;
+        background-color: #5aac44;
+        color: white;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+
+    &__btn-cancel {
+      outline: none;
+      position: absolute;
+      bottom: 10px;
+      left: 60%;
+
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
   }
 }

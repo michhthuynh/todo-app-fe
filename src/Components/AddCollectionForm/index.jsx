@@ -6,53 +6,48 @@ import { FastField, Formik } from 'formik';
 import AutoFocusField from '../../custom-fields/AutoFocusField';
 
 AddCollectionForm.propTypes = {
-  showForm: PropTypes.bool,
   onSubmit: PropTypes.func,
 };
 
 AddCollectionForm.defaultProps = {
-  showForm: false,
   onSubmit: null,
-}
-const randomID = () => {
-  return Math.ceil(Math.random() * Math.pow(10, 8))
 }
 
 function AddCollectionForm(props) {
-  const { showForm, onSubmit } = props
+  const { onSubmit } = props
 
   const handleOnBlur = () => {
 
   }
   return (
-    <div className="collection__add-collection_form-wrapper">
-      <Formik
-        initialValues={{ addCollectionField: '' }}
-        onSubmit={(values, { resetForm }) => {
-          if (!onSubmit) return
-          onSubmit({
-            id: randomID(),
-            title: values.addCollectionField
-          })
+    <Formik
+      initialValues={{ addCollectionField: '' }}
+      onSubmit={(values, { resetForm }) => {
+        if (!onSubmit) return
+        onSubmit(values.addCollectionField)
+        resetForm({
+          addCollectionField: ""
+        })
+      }}
+    >
+      {
+        formProps => {
+          return (
+            <form onSubmit={formProps.handleSubmit} onBlur={handleOnBlur} className="collection__add-collection__control__form">
+              <FastField
+                name='addCollectionField'
+                component={AutoFocusField}
 
-        }}
-      >
-        {
-          formProps => {
-            return (
-              <form onSubmit={formProps.handleSubmit} onBlur={handleOnBlur}>
-                <FastField
-                  name='addCollectionField'
-                  component={AutoFocusField}
-
-                  className="addCollectionField"
-                />
-              </form>
-            )
-          }
+                className="addCollectionField"
+                placeholder="New task"
+              />
+              <button type="submit">Add collection</button>
+            </form>
+          )
         }
-      </Formik>
-    </div>
+      }
+    </Formik>
+
   );
 }
 

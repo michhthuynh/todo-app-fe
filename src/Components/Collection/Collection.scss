@@ -12,31 +12,6 @@ $background-color: #ebecf0;
   flex-direction: column;
   justify-self: start;
 
-  &__header {
-    height: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    &__title {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-    &__btn {
-      border: none;
-      color: rgba($color: #172b4d, $alpha: 0.7);
-      height: 20px;
-      border: none;
-      outline: none;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all 300ms ease-in-out;
-      &:hover {
-        background-color: rgba($color: gray, $alpha: 0.1);
-      }
-    }
-  }
-
   &__list {
     max-height: calc(100vh - 150px);
     background-color: $background-color;

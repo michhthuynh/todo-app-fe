@@ -3,39 +3,45 @@ import PropTypes from 'prop-types';
 import './Task.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import AutoFocusField from '../../custom-fields/AutoFocusField';
+import { FastField, Formik } from 'formik';
 
 Task.propTypes = {
-  id: PropTypes.string,
+  taskID: PropTypes.string,
   description: PropTypes.string,
   focus: PropTypes.string,
-  onClickEdit: PropTypes.func,
+  onSubmit: PropTypes.func,
   onClickRemove: PropTypes.func,
 };
 
 Task.defaultProps = {
-  id: '',
+  taskID: '',
   description: '',
   focus: '',
-  onClickEdit: null,
+  onSubmit: null,
   onClickRemove: null,
 }
 
 
 function Task(props) {
-  const { id, description, onClickEdit, onClickRemove, focus } = props
+  const { taskID, description, onSubmit, onClickRemove, focus } = props
+  const [showFormEdit, setShowFormEdit] = useState(false)
 
   const handleOnClickEdit = () => {
-    if (!onClickEdit) return
-    onClickEdit(id)
+    setShowFormEdit(true)
   }
 
   const handleOnClickRemove = () => {
     if (!onClickRemove) return
-    onClickRemove(id)
+    onClickRemove(taskID)
+  }
+
+  const handleOnBlur = () => {
+    setShowFormEdit(false)
   }
 
   return (
-    <div className={focus === id ? "task-item focus" : "task-item"}>
+    <div className={focus === taskID ? "task-item focus" : "task-item"}>
       <div className="task-item__title">
         {description}
       </div>
@@ -47,6 +53,37 @@ function Task(props) {
           <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
+
+      {
+        !!showFormEdit &&
+        <div className="task-item__form">
+          <Formik
+            initialValues={{ editTitle: '' }}
+            onSubmit={(values, { resetForm }) => {
+              onSubmit({
+                taskID: taskID,
+                description: values.editTitle
+              })
+              setShowFormEdit(false)
+            }}
+          >
+            {
+              formProps => {
+                return (
+                  <form onSubmit={formProps.handleSubmit} onBlur={handleOnBlur}>
+                    <FastField
+                      name='editTitle'
+                      component={AutoFocusField}
+
+                      className="editTitle"
+                    />
+                  </form>
+                )
+              }
+            }
+          </Formik>
+        </div>
+      }
     </div>
   );
 }
