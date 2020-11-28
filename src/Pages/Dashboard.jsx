@@ -119,7 +119,7 @@ function DashboardPage(props) {
           callReload()
         }
       } catch (error) {
-        console.error("Cannot add task...")
+        console.error("Can not connect database: ", error.message)
       }
     }
     callAddTask()
@@ -130,7 +130,7 @@ function DashboardPage(props) {
     if (Object.keys(changeDes).length === 0) return
     const callAddTask = async () => {
       try {
-        const res = await API.put('/task/update', {
+        const res = await API.put('/task/update/desc', {
           description: changeDes.description,
           id: changeDes.taskID
         }, tokenConfig)
@@ -138,7 +138,7 @@ function DashboardPage(props) {
           callReload()
         }
       } catch (error) {
-        console.error("Cannot add task...")
+        console.error("Can not connect database: ", error.message)
       }
     }
     callAddTask()

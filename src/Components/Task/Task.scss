@@ -1,8 +1,12 @@
 $grey-color: #ebecf0;
 $black-color: rgb(23, 43, 77);
 
-.focus {
-  background-color: rgb(90, 172, 68) !important;
+.isComplete {
+  background-color: aqua !important;
+  .task-item__title {
+    color: white;
+    text-decoration: line-through;
+  }
 }
 
 .task-item {

@@ -9,7 +9,7 @@ import { FastField, Formik } from 'formik';
 Task.propTypes = {
   taskID: PropTypes.string,
   description: PropTypes.string,
-  focus: PropTypes.string,
+  status: PropTypes.bool,
   onSubmit: PropTypes.func,
   onClickRemove: PropTypes.func,
 };
@@ -17,14 +17,14 @@ Task.propTypes = {
 Task.defaultProps = {
   taskID: '',
   description: '',
-  focus: '',
+  status: false,
   onSubmit: null,
   onClickRemove: null,
 }
 
 
 function Task(props) {
-  const { taskID, description, onSubmit, onClickRemove, focus } = props
+  const { taskID, description, onSubmit, onClickRemove, status } = props
   const [showFormEdit, setShowFormEdit] = useState(false)
 
   const handleOnClickEdit = () => {
@@ -41,7 +41,7 @@ function Task(props) {
   }
 
   return (
-    <div className={focus === taskID ? "task-item focus" : "task-item"}>
+    <div className={status ? "task-item isComplete" : "task-item"}>
       <div className="task-item__title">
         {description}
       </div>

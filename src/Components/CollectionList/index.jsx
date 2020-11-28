@@ -29,8 +29,15 @@ function CollectionList(props) {
   return (
     <div className="collection__list">
       {
-        task.map(({ description, _id }, index) => {
-          return <Task description={description} taskID={_id} key={index} onClickRemove={handleOnClickRemoveTask} onSubmit={handleChangeDes} />
+        task.map(({ description, _id, status }, index) => {
+          return <Task
+            description={description}
+            taskID={_id}
+            key={index}
+            onClickRemove={handleOnClickRemoveTask}
+            onSubmit={handleChangeDes}
+            status={status}
+          />
         })
       }
     </div>
