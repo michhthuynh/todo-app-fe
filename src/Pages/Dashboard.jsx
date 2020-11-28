@@ -27,14 +27,28 @@ function DashboardPage(props) {
   const [changeTitle, setChangeTitle] = useState({})
   const [showFormAddCollection, setShowFormAddCollection] = useState(false)
   const [addCollection, setAddCollection] = useState({})
+  const [valueComplete, setValueStatus] = useState({})
 
   const callReload = () => {
     setReload(randomID())
+
   }
+
   useEffect(() => {
     const fetchCollection = async () => {
       try {
-        const userID = localStorage.getItem('user_id')
+        await API.get(`/auth/login`, tokenConfig)
+      } catch (error) {
+        window.location.reload()
+      }
+    }
+    fetchCollection()
+  }, [])
+
+  useEffect(() => {
+    const userID = localStorage.getItem('user_id')
+    const fetchCollection = async () => {
+      try {
         const response = await API.get(`/collection/${userID}/task`, tokenConfig)
         const data = response['data']["message"]
         setCollections(data)
@@ -165,6 +179,32 @@ function DashboardPage(props) {
     callRemoveTask()
   }, [removeTask])
 
+
+  // Update check task
+  useEffect(() => {
+    if (Object.keys(valueComplete).length === 0) return
+    const { taskID, status } = valueComplete
+    const callUpdate = async () => {
+      try {
+        const res = await API.put('/task/update/status', {
+          id: taskID,
+          status: status
+        }, tokenConfig)
+
+        if (res.status === 200) {
+          callReload()
+        }
+      } catch (error) {
+        console.error("Cannot update: ", error.message)
+      }
+    }
+    callUpdate()
+  }, [valueComplete])
+
+  const handleOnChecked = e => {
+    setValueStatus(e)
+  }
+
   const handleOnClickRemove = e => {
     setCollectionIDRemove(e)
   }
@@ -219,6 +259,7 @@ function DashboardPage(props) {
                 onAddTask={handleAddTask}
                 onChangeDesc={handleChangeDesc}
                 onRemoveTask={handleRemoveTask}
+                onChecked={handleOnChecked}
               />
             })
           }

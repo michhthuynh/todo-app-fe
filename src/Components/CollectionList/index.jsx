@@ -6,16 +6,18 @@ CollectionList.propTypes = {
   task: PropTypes.array,
   onSubmit: PropTypes.func,
   onRemoveTask: PropTypes.func,
+  onChecked: PropTypes.func,
 };
 
 CollectionList.defaultProps = {
   task: [],
   onSubmit: null,
   onRemoveTask: null,
+  onChecked: null,
 }
 
 function CollectionList(props) {
-  const { task, onSubmit, onRemoveTask } = props
+  const { task, onSubmit, onRemoveTask, onChecked } = props
 
   const handleChangeDes = e => {
     if (!onSubmit) return
@@ -25,6 +27,11 @@ function CollectionList(props) {
   const handleOnClickRemoveTask = id => {
     if (!onRemoveTask) return
     onRemoveTask(id)
+  }
+
+  const handleOnChecked = e => {
+    if (!onChecked) return
+    onChecked(e)
   }
   return (
     <div className="collection__list">
@@ -37,6 +44,7 @@ function CollectionList(props) {
             onClickRemove={handleOnClickRemoveTask}
             onSubmit={handleChangeDes}
             status={status}
+            onCheckBox={handleOnChecked}
           />
         })
       }

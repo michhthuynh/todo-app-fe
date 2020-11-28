@@ -18,6 +18,7 @@ Collection.propTypes = {
   onAddTask: PropTypes.func,
   onChangeDesc: PropTypes.func,
   onRemoveTask: PropTypes.func,
+  onChecked: PropTypes.func,
 };
 
 Collection.defaultProps = {
@@ -29,10 +30,11 @@ Collection.defaultProps = {
   onAddTask: null,
   onChangeDesc: null,
   onRemoveTask: null,
+  onChecked: null,
 }
 
 function Collection(props) {
-  const { collectionID, onClickRemoveCollection, onChangeTitle, title, tasks, onAddTask, onChangeDesc, onRemoveTask } = props
+  const { collectionID, onClickRemoveCollection, onChangeTitle, title, tasks, onAddTask, onChangeDesc, onRemoveTask, onChecked } = props
   const [showFormAddTask, setShowFormAddTask] = useState(false)
 
 
@@ -73,11 +75,16 @@ function Collection(props) {
     onRemoveTask(e)
   }
 
+  const handleOnChecked = e => {
+    if (!onChecked) return
+    onChecked(e)
+  }
+
   return (
     <div className="collection-wrapper">
       <div className="collection">
         <CollectionHeader title={title} collectionID={collectionID} onClickRemove={handleOnClickRemoveCollection} onChangeTitle={handleOnChangeTitle} />
-        <CollectionList task={tasks} onSubmit={handleChangeDesc} onRemoveTask={handleRemoveTask} />
+        <CollectionList task={tasks} onSubmit={handleChangeDesc} onRemoveTask={handleRemoveTask} onChecked={handleOnChecked} />
         <CollectionAddTask display={showFormAddTask} onSubmit={handleAddTask} onDisplay={handleDisplayAddTask} han />
         {
           !showFormAddTask &&
