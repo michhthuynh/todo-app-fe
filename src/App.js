@@ -8,17 +8,14 @@ import RegisterPage from './Pages/RegisterPage';
 import API from './utils/API';
 import { useDispatch } from 'react-redux';
 import DashboardPage from './Pages/Dashboard';
+import tokenConfig from './utils/tokenConfig';
 
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
     const getAuth = async () => {
-      API.get("/auth/login", {
-        headers: {
-          "Authorization": `bearer ${localStorage.getItem('token')}`
-        }
-      }).then(result => {
+      API.get("/auth/login", tokenConfig).then(result => {
         localStorage.setItem("username", result.data.username)
         localStorage.setItem("user_id", result.data.id)
         dispatch(verifyLogin(true))
